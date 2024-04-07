@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Building the code"
-WORKSPACE="/home/$(whoami)/jenkins-data/jenkins_home/workspace/pipeline-docker-maven"
+#WORKSPACE="/home/$(whoami)/jenkins-data/jenkins_home/workspace/pipeline-docker-maven"
+WORKSPACE="/var/jenkins_home/workspace/pipeline-docker-maven"
 echo "WORKSPACE: $WORKSPACE"
 whoami
 ls $WORKSPACE/java-app
