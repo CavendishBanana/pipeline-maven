@@ -14,7 +14,9 @@ echo "working directory: $(pwd)"
 
 #docker run --rm --mount type=bind,source="$WORKSPACE/java-app/",target="/app" --mount type=bind,source="/root/.m2",target="/root/.m2/" -w "/app" "maven:3.9.6-eclipse-temurin-17-alpine" "$@"
 
-docker run -it -d --name maven-alpine "maven:3.9.6-eclipse-temurin-17-alpine" -w /app bash
+docker run -it -d --name maven-alpine "maven:3.9.6-eclipse-temurin-17-alpine"  bash
+docker exec -d -it maven-alpine mkdir "/app"
+docker exec -d -it maven-alpine cd "/app"
 docker cp $WORKSPACE/java-app/ maven-alpine:.
 docker exec -d -it maven-alpine "$@"
 docker cp maven-alpine:. $WORKSPACE/java-app
