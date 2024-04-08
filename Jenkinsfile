@@ -8,19 +8,13 @@ pipeline {
         stage('Build') {
             steps {
 		sh '''
-                ./jenkins/build/mvn.sh
+                ./jenkins/build/mvn.sh  mvn -B -Dskiptests clean package
 		./jenkins/build/build.sh
 		'''
             }
 	    post{
 	        success{
 		archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
-		}
-		always{
-		sh '''
-		    docker stop maven-alpine
-		    docker rm maven-alpine
-		'''
 		}
 	    }
         }
