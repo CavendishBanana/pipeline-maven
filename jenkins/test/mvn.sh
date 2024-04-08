@@ -18,7 +18,7 @@ docker run -it -d --name maven-alpine "maven:3.9.6-eclipse-temurin-17-alpine"  b
 docker exec -d -it maven-alpine mkdir "/app"
 #docker exec -d -it maven-alpine cd "/app"
 docker cp $WORKSPACE/java-app/ maven-alpine:/app/
-docker exec -d -it -w /app maven-alpine "mvn test"
+docker exec -d -it -w /app maven-alpine mvn test
 docker cp maven-alpine:/app $WORKSPACE/java-app
 docker cp maven-alpine:/root/.m2 /root/.m2
 docker stop maven-alpine
