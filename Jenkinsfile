@@ -8,24 +8,30 @@ pipeline {
         stage('Build') {
             steps {
 		sh '''
-                ./jenkins/build/mvn.sh mvn -B -Dskiptests clean package
-		.jenkins/build/build.sh
+                ./jenkins/build/mvn.sh
+		./jenkins/build/build.sh
 		'''
             }
 	    post{
 	        success{
 		archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
 		}
+		always{
+		docker stop maven-alpine
+		docker rm maven-alpine
+		}
 	    }
         }
         stage('Test') {
             steps {
-                sh './jenkins/test/mvn.sh mvn test'
+                sh './jenkins/test/mvn.sh'
             }
 	    post{
                 always{
                     junit 'java-app/target/surefire-reports/*.xml'
-                }
+                    docker stop maven-alpine
+		    docker rm maven-alpine
+		}
             }
         }
 	stage('Push'){
