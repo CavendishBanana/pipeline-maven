@@ -7,4 +7,4 @@ echo "WORKSPACE: $WORKSPACE"
 whoami
 echo "working directory: $(pwd)"
 ls -la "$(pwd)"
-docker run --rm --mount type=bind,source="$WORKSPACE/java-app/",target="/app" --mount type=bind,source="/root/.m2",target="/root/.m2/" -w "/app" "grosmichelbanana/maven-alpine:v.1" "$@"
+docker run --rm --mount type=bind,source=$WORKSPACE/java-app/,target=/app --mount type=bind,source=/root/.m2,target=/root/.m2/ -w /app grosmichelbanana/maven-alpine:v.1 $@
