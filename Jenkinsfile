@@ -3,6 +3,7 @@ pipeline {
     
     environment {
         PASS = credentials('registry-pass')
+	PROD_MACHINE_IP = params.IP_PROD_MACHINE
     }
     stages {
         stage('Build') {
@@ -34,7 +35,7 @@ pipeline {
 	}
         stage('Deploy') {
             steps {
-                sh './jenkins/deploy/deploy.sh params.IP_PROD_MACHINE' 
+                sh './jenkins/deploy/deploy.sh $PROD_MACHINE_IP' 
             }
         }
     }
