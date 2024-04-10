@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         PASS = credentials('registry-pass')
-	PROD_MACHINE_IP = params.IP_PROD_MACHINE
+	PROD_MACHINE_IP = "$IP_PROD_MACHINE"
     }
     stages {
         stage('Build') {
