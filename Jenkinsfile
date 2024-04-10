@@ -14,7 +14,7 @@ pipeline {
             }
 	    post{
 	        success{
-		archiveArtifacts artifacts: '/app/target/*.jar', fingerprint: true
+		archiveArtifacts artifacts: 'app/target/*.jar', fingerprint: true
 		}
 	    }
         }
