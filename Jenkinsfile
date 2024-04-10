@@ -34,7 +34,7 @@ pipeline {
 	}
         stage('Deploy') {
             steps {
-                sh './jenkins/deploy/deploy.sh'
+                sh './jenkins/deploy/deploy.sh params.IP_PROD_MACHINE' 
             }
         }
     }
