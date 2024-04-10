@@ -18,7 +18,7 @@ pipeline {
 		ls -la
 		pwd
 		'''
-		archiveArtifacts artifacts: './*.jar', fingerprint: true
+		archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
 		}
 	    }
         }
