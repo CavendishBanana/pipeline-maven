@@ -14,7 +14,7 @@ pipeline {
             }
 	    post{
 	        success{
-		archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
+		archiveArtifacts artifacts: '/app/target/*.jar', fingerprint: true
 		}
 	    }
         }
@@ -25,9 +25,7 @@ pipeline {
 	    post{
                 always{
 		sh '''
-                    junit 'java-app/target/surefire-reports/*.xml'
-                    docker stop maven-alpine
-		    docker rm maven-alpine
+                    junit '/app/target/surefire-reports/*.xml'
 		'''
 		}
             }
