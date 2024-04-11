@@ -8,8 +8,6 @@ ls -la
 pwd
 PROD_MACHINE_IP=$1
 echo $PROD_MACHINE_IP
-ls /opt2
-cat /opt2/production
 scp -i /opt2/production /tmp/.auth prod-user@$PROD_MACHINE_IP:/tmp/.auth
 scp -i /opt2/production jenkins/deploy/publish.sh prod-user@$PROD_MACHINE_IP:/tmp/publish.sh
 ssh -i /opt2/production prod-user@$PROD_MACHINE_IP "/tmp/publish.sh"
